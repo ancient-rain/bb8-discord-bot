@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
-import random
+from starwarsfacts import facts
+from random import *
 import requests
 import asyncio
 import aiohttp
@@ -8,8 +9,8 @@ import aiohttp
 CLIENT = discord.Client()
 AUTHOR = '!author'
 YOUTUBE = '!youtube'
+SWFACT = '!swFact'
 GOOGLE_API_KEY = 'AIzaSyB3EHfKC4ewDs9s2c6EG1itBsiCyvwXzV4'
-
 
 @CLIENT.event
 async def on_ready():
@@ -18,21 +19,29 @@ async def on_ready():
     print(CLIENT.user.id)
     print('-------')
 
-
 @CLIENT.event
 async def on_message(message):
     command = message.content
     channel = message.channel
 
     if command.startswith(AUTHOR):
-        await CLIENT.send_message(channel, custom_message('Nuku'))
+        await CLIENT.send_message(channel, custom_message_bracket('ɲuĸu'))
     elif command.startswith(YOUTUBE):
         search = message.content[len(YOUTUBE) + 1:]
         video_url = await get_youtube_url(search)
         await CLIENT.send_message(channel, video_url)
+    elif command.startswith(SWFACT):
+        fact = get_sw_fact()
+        await CLIENT.send_message(channel, custom_message_line(fact))
 
+def get_sw_fact():
+    fact = sample(facts, 1)
+    return fact[0]
 
-def custom_message(message):
+def custom_message_line(message):
+    return '```md\n' + message + '\n-------------\n< BB8 Facts >\n```'
+
+def custom_message_bracket(message):
     return '```ini\n[  ' + message + '  ]\n```'
 
 
