@@ -1,1 +1,1 @@
-worker: python bb8.py
+worker: python .\scripts\runner.py
