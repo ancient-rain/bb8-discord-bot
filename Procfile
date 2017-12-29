@@ -1,1 +1,1 @@
-worker: python .\scripts\runner.py
+worker: python runner.py
