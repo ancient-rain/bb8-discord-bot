@@ -77,7 +77,7 @@ def sendError():
     return '```ini\n[ Invalid command, type !bb8 for a list of available commands. ]\n```'
 
 def sendCommands():
-    return '```ml\n"Available commands for BB8"\n\nHelp\n!bb8\n\nSearch For Youtube Video\n!yt video_name\n\nAuthor\n!author\n```'
+    return '```ml\nHelp\n!bb8\n\nSearch For Youtube Video\n!yt video_name\n\nAuthor\n!author\n```'
 
 async def get_youtube_url(search):
     url = 'https://www.googleapis.com/youtube/v3/search'
